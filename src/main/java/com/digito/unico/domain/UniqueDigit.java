@@ -5,8 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.constraints.NotNull;
+import java.nio.charset.StandardCharsets;
 import java.sql.Blob;
+import java.sql.SQLException;
 
 @Getter
 @Setter
@@ -43,4 +46,13 @@ public class UniqueDigit {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public UniqueDigit(Long id, String n, Integer k, int result, User user) throws SQLException {
+        this.id = id;
+        this.n = n;
+        this.nBlob = new SerialBlob(n.getBytes(StandardCharsets.UTF_8));
+        this.k = k;
+        this.result = result;
+        this.user = user;
+    }
 }
