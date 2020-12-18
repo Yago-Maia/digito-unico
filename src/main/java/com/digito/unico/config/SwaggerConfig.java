@@ -1,10 +1,7 @@
 package com.digito.unico.config;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -21,14 +18,10 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+                .apis(RequestHandlerSelectors.basePackage("com.digito.unico.web.controller"))
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
-    }
-
-    private Predicate<RequestHandler> apis(){
-        return RequestHandlerSelectors.basePackage("com.digito.unico.web.controller");
     }
 
     private ApiInfo apiInfo() {
