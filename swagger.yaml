@@ -1,0 +1,285 @@
+---
+swagger: "2.0"
+info:
+  description: Projeto Dígito Único - Banco Inter
+  version: 1.0.0
+  title: Projeto Dígito Único
+  contact:
+    name: Yago Maia
+    email: yagogmaia@gmail.com
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8080
+basePath: /
+tags:
+- name: unique-digit-controller
+  description: Unique Digit Controller
+- name: user-controller
+  description: User Controller
+paths:
+  /User:
+    get:
+      tags:
+      - user-controller
+      summary: Lista todos os Usuários
+      description: Lista todos os Usuários
+      operationId: findAllRatingsUsingGET
+      produces:
+      - '*/*'
+      parameters: []
+      responses:
+        200:
+          description: Usuários listados com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+    post:
+      tags:
+      - user-controller
+      summary: Insere um Usuário com Dígito Único
+      description: Insere um Usuário com Dígito Único
+      operationId: saveUSerUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - '*/*'
+      parameters:
+      - name: publicKey
+        in: header
+        description: publicKey
+        required: true
+        type: string
+      - in: body
+        name: user
+        description: user
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        201:
+          description: Inclusão do Usuário com sucesso.
+          schema:
+            $ref: '#/definitions/User'
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+    put:
+      tags:
+      - user-controller
+      summary: Atualiza Usuário
+      description: Atualiza Usuário
+      operationId: editUserUsingPUT
+      consumes:
+      - application/json
+      produces:
+      - '*/*'
+      parameters:
+      - name: publicKey
+        in: header
+        description: publicKey
+        required: true
+        type: string
+      - in: body
+        name: user
+        description: user
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        201:
+          description: Created
+        204:
+          description: Atualização com sucesso de um usuário
+          schema:
+            $ref: '#/definitions/User'
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+  /User/{id}:
+    get:
+      tags:
+      - user-controller
+      summary: Lista o usuário
+      description: Lista o usuário
+      operationId: getUserUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Usuário Listado com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+    delete:
+      tags:
+      - user-controller
+      summary: Exclui um Usuário
+      description: Exclui um Usuário
+      operationId: deleteUserUsingDELETE
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: integer
+        format: int64
+      responses:
+        204:
+          description: Exclusão com sucesso de um usuário
+          schema:
+            type: boolean
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+  /digitoUnico/calcula:
+    post:
+      tags:
+      - unique-digit-controller
+      summary: Calcula um Dígito Único
+      description: Calcula um Dígito Único
+      operationId: computeUniqueDigitUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - '*/*'
+      parameters:
+      - in: body
+        name: uniqueDigit
+        description: uniqueDigit
+        required: true
+        schema:
+          $ref: '#/definitions/UniqueDigit'
+      responses:
+        201:
+          description: Dígito único calculado com sucesso.
+          schema:
+            $ref: '#/definitions/UniqueDigit'
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+  /digitoUnico/listar:
+    get:
+      tags:
+      - unique-digit-controller
+      summary: Lista Dígitos Únicos do usuário
+      description: Lista Dígitos Únicos do usuário
+      operationId: listUniqueDigitUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: userId
+        in: header
+        description: userId
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Dígitos Únicos Listados com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UniqueDigit'
+        401:
+          description: Não autorizado
+        403:
+          description: Recurso proibido
+        404:
+          description: Recurso não encontrado
+      deprecated: false
+definitions:
+  UniqueDigit:
+    type: object
+    required:
+    - id
+    - k
+    - n
+    - result
+    properties:
+      blobFromN:
+        type: string
+      id:
+        type: integer
+        format: int64
+        description: Identificação do Dígito Único
+      k:
+        type: integer
+        format: int32
+        description: Valor K
+      n:
+        type: string
+        description: Valor N
+      result:
+        type: integer
+        format: int32
+        description: Resultado
+      userId:
+        type: integer
+        format: int64
+        description: Identificador do usuário
+    title: UniqueDigit
+  User:
+    type: object
+    required:
+    - email
+    - id
+    - name
+    properties:
+      email:
+        type: string
+        description: Email do usuário
+      id:
+        type: integer
+        format: int64
+        description: Identificador do usuário
+      name:
+        type: string
+        description: Nome do usuário
+      uniqueDigitList:
+        type: array
+        description: Lista de Dígitos Únicos do usuário
+        items:
+          $ref: '#/definitions/UniqueDigit'
+    title: User
