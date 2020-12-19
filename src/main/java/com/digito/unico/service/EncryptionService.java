@@ -22,13 +22,10 @@ public class EncryptionService {
             final Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             cipherText = cipher.doFinal(data.getBytes());
+            return Base64.getEncoder().encodeToString(cipherText);
         } catch (Exception e) {
             throw new DataBaseOperationException("An error occurred while running encryption.");
         }
-
-        String encrypt = Base64.getEncoder().encodeToString(cipherText);
-
-        return encrypt;
     }
 
     private PublicKey getPublicKey(String pub) {
