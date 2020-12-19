@@ -1,5 +1,6 @@
 package com.digito.unico.domain;
 
+import com.digito.unico.exceptions.BlobConversionException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -54,5 +55,13 @@ public class UniqueDigit {
         this.k = k;
         this.result = result;
         this.user = user;
+    }
+
+    public void setBlobFromN(String n) {
+        try {
+            this.nBlob = new SerialBlob(n.getBytes());
+        } catch (Exception e) {
+            throw new BlobConversionException();
+        }
     }
 }
