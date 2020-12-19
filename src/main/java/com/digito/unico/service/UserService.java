@@ -72,6 +72,12 @@ public class UserService {
         }
     }
 
+    public void checkUserId(Long userId) {
+        if(userId != null) {
+            find(userId);
+        }
+    }
+
     public User find(Long id) {
         Optional<User> obj = userRepository.findById(id);
         return obj.orElseThrow(() -> new UserNotFoundException(id));
