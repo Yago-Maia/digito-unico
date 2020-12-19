@@ -3,7 +3,10 @@ package com.digito.unico.domain;
 import com.digito.unico.exceptions.BlobConversionException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.sql.rowset.serial.SerialBlob;
@@ -12,8 +15,8 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Blob;
 import java.sql.SQLException;
 
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "unique_digit")
@@ -57,11 +60,15 @@ public class UniqueDigit {
         this.user = user;
     }
 
-    public void setBlobFromN(String n) {
-        try {
-            this.nBlob = new SerialBlob(n.getBytes());
-        } catch (Exception e) {
-            throw new BlobConversionException();
+    public String getN() {
+        if(this.nBlob != null) {
+            try {
+                return new String(this.nBlob.getBytes(1l, (int) this.nBlob.length()));
+            } catch (Exception e) {
+                throw new BlobConversionException();
+            }
+        } else {
+            return n;
         }
     }
 }

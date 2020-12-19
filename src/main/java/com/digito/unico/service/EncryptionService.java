@@ -41,7 +41,6 @@ public class EncryptionService {
             throw new DataBaseOperationException("An error occurred while running encryption.");
         }
 
-
         return pubKey;
     }
 }

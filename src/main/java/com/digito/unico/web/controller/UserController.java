@@ -2,17 +2,18 @@ package com.digito.unico.web.controller;
 
 import com.digito.unico.domain.User;
 import com.digito.unico.dto.UserDTO;
-import com.digito.unico.mapper.UserMapper;
 import com.digito.unico.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Api(tags = "User")
 @RestController
@@ -20,7 +21,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
+    private ModelMapper modelMapper;
 
     @Autowired
     private UserService userService;
@@ -34,7 +35,7 @@ public class UserController {
     @GetMapping(value = { "/{id}" })
     public UserDTO getUser(@PathVariable("id") Long id) {
         try {
-            return userMapper.domainToDto(userService.findById(id));
+            return modelMapper.map(userService.findById(id), UserDTO.class);
         } catch (Exception ex) {
             throw ex;
         }
@@ -67,8 +68,8 @@ public class UserController {
     @PostMapping
     public UserDTO saveUSer(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
         try {
-            User user = userMapper.dtoToDomain(userDto);
-            return userMapper.domainToDto(userService.save(user, publicKey));
+            User user = modelMapper.map(userDto, User.class);
+            return modelMapper.map(userService.save(user, publicKey), UserDTO.class);
         } catch (Exception ex) {
             throw ex;
         }
@@ -84,8 +85,8 @@ public class UserController {
     @PutMapping
     public UserDTO editUser(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
         try {
-            User user = userMapper.dtoToDomain(userDto);
-            return userMapper.domainToDto(userService.update(user, publicKey));
+            User user = modelMapper.map(userDto, User.class);
+            return modelMapper.map(userService.update(user, publicKey), UserDTO.class);
         } catch (Exception ex) {
             throw ex;
         }
@@ -100,7 +101,7 @@ public class UserController {
     @GetMapping
     public List<UserDTO> findAllRatings() {
         try {
-            return userMapper.domainToDto(userService.findAll());
+            return userService.findAll().stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
         } catch (Exception ex) {
             throw ex;
         }

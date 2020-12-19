@@ -8,6 +8,8 @@ import com.digito.unico.repository.UniqueDigitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -24,24 +26,24 @@ public class UniqueDigitService {
     @Autowired
     private UserService userService;
 
-    public int computeAndSaveUniqueDigit(UniqueDigit uniqueDigitRequest, Long userId) {
+    public int computeAndSaveUniqueDigit(UniqueDigit uniqueDigitRequest, Long userId) throws SQLException {
 
         this.checkFields(uniqueDigitRequest);
-        User user = userService.find(userId);
+        userService.checkUserId(userId);
 
         UniqueDigit uniqueDigit = uniqueDigitCacheService.getFromQueue(uniqueDigitRequest.getN(), uniqueDigitRequest.getK());
         if(uniqueDigit == null) {
             int result = operationUniqueDigitService.computeUniqueDigit(uniqueDigitRequest.getN(), uniqueDigitRequest.getK());
 
             uniqueDigit = new UniqueDigit();
-            uniqueDigit.setBlobFromN(uniqueDigitRequest.getN());
+            uniqueDigit.setNBlob(new SerialBlob(uniqueDigitRequest.getN().getBytes()));
             uniqueDigit.setK(uniqueDigitRequest.getK());
             uniqueDigit.setResult(result);
             uniqueDigitCacheService.insertUniqueDigit(uniqueDigit);
         }
 
-        if(user.getId() != null) {
-            uniqueDigit.setUser(user);
+        if(userId != null) {
+            uniqueDigit.setUser(userService.find(userId));
             try {
                 uniqueDigitRepository.save(uniqueDigit);
             } catch (Exception e) {
