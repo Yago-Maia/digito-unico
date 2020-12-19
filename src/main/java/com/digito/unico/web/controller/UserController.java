@@ -1,0 +1,108 @@
+package com.digito.unico.web.controller;
+
+import com.digito.unico.domain.User;
+import com.digito.unico.dto.UserDTO;
+import com.digito.unico.mapper.UserMapper;
+import com.digito.unico.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Api(tags = "User")
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
+
+    @ApiOperation(value = "Lista o usuário", notes = "Lista o usuário", response = User.class, responseContainer = "List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário Listado com sucesso"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 403, message = "Recurso proibido"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado") })
+    @GetMapping(value = { "/{id}" })
+    public UserDTO getUser(@PathVariable("id") Long id) {
+        try {
+            return userMapper.domainToDto(userService.findById(id));
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Exclui um Usuário", notes = "Exclui um Usuário")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "Exclusão com sucesso de um usuário"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 403, message = "Recurso proibido"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado") })
+    @DeleteMapping(value = { "/{id}" })
+    public Boolean deleteUser(@PathVariable("id") Long id) {
+        try {
+            return userService.deleteUser(id);
+        } catch (Exception ex) {
+            throw ex;
+        }
+
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "Insere um Usuário com Dígito Único", notes = "Insere um Usuário com Dígito Único", response = User.class)
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Inclusão do Usuário com sucesso."),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 403, message = "Recurso proibido"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado") })
+    @PostMapping
+    public UserDTO saveUSer(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
+        try {
+            User user = userMapper.dtoToDomain(userDto);
+            return userMapper.domainToDto(userService.save(user, publicKey));
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Atualiza Usuário", notes = "Atualiza Usuário")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "Atualização com sucesso de um usuário"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 403, message = "Recurso proibido"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado") })
+    @PutMapping
+    public UserDTO editUser(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
+        try {
+            User user = userMapper.dtoToDomain(userDto);
+            return userMapper.domainToDto(userService.update(user, publicKey));
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    @ApiOperation(value = "Lista todos os Usuários", notes = "Lista todos os Usuários", response = User.class, responseContainer = "List" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuários listados com sucesso"),
+            @ApiResponse(code = 401, message = "Não autorizado"),
+            @ApiResponse(code = 403, message = "Recurso proibido"),
+            @ApiResponse(code = 404, message = "Recurso não encontrado") })
+    @GetMapping
+    public List<UserDTO> findAllRatings() {
+        try {
+            return userMapper.domainToDto(userService.findAll());
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+}
