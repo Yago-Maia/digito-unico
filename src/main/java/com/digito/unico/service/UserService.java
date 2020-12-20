@@ -45,12 +45,7 @@ public class UserService {
     }
 
     public User findById(Long id) {
-        try {
-            Optional<User> obj = userRepository.findById(id);
-            return obj.orElseThrow(() -> new UserNotFoundException(id));
-        } catch (Exception e) {
-            throw new DataBaseOperationException("An error occurred while getting user.");
-        }
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
 
     }
 

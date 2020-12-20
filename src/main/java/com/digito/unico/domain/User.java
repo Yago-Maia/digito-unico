@@ -2,17 +2,14 @@ package com.digito.unico.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "user")
@@ -33,7 +30,7 @@ public class User {
     @NotNull
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     @ApiModelProperty(notes = "Lista de Dígitos Únicos do usuário", required = false)
-    private List<UniqueDigit> uniqueDigitList = new ArrayList<>();
+    private List<UniqueDigit> uniqueDigitList;
 }

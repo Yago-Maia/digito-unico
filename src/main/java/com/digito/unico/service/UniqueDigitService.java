@@ -43,7 +43,7 @@ public class UniqueDigitService {
         }
 
         if(userId != null) {
-            uniqueDigit.setUser(userService.find(userId));
+            uniqueDigit.setUserId(userId);
             try {
                 uniqueDigitRepository.save(uniqueDigit);
             } catch (Exception e) {

@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "Lista o usuário", notes = "Lista o usuário", response = User.class, responseContainer = "List")
+    @ApiOperation(value = "Lista o usuário", notes = "Lista o usuário", response = UserDTO.class, responseContainer = "List")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Usuário Listado com sucesso"),
             @ApiResponse(code = 401, message = "Não autorizado"),
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Insere um Usuário com Dígito Único", notes = "Insere um Usuário com Dígito Único", response = User.class)
+    @ApiOperation(value = "Insere um Usuário com Dígito Único", notes = "Insere um Usuário com Dígito Único", response = UserDTO.class)
     @ApiResponses({
             @ApiResponse(code = 201, message = "Inclusão do Usuário com sucesso."),
             @ApiResponse(code = 401, message = "Não autorizado"),
@@ -92,7 +92,7 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "Lista todos os Usuários", notes = "Lista todos os Usuários", response = User.class, responseContainer = "List" )
+    @ApiOperation(value = "Lista todos os Usuários", notes = "Lista todos os Usuários", response = UserDTO.class, responseContainer = "List" )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Usuários listados com sucesso"),
             @ApiResponse(code = 401, message = "Não autorizado"),
