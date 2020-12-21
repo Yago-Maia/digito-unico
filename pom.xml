@@ -11,7 +11,6 @@
 	<groupId>com.digito.unico</groupId>
 	<artifactId>digito-unico</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>digito-unico</name>
 	<description>Dígito Único - Banco Inter</description>
 
