@@ -6,210 +6,445 @@
 	},
 	"item": [
 		{
-			"name": "GetUser",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/user/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"1"
-					]
-				},
-				"description": "Endpoint para buscar Usuário."
-			},
-			"response": []
-		},
-		{
-			"name": "PostUser",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+			"name": "Local",
+			"item": [
+				{
+					"name": "GetUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						},
+						"description": "Endpoint para buscar Usuário."
 					},
-					{
-						"key": "publicKey",
-						"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8LAVw8pdvrLREu7U3xAx1Nzv5xM/5wIMJ1bW1B1Rc5CIVCAY0Nzx3J7lyl6V4lHG34DvJMpV6umAQNz5J/HO/qZVX0lzWBOR7y+2mVcEqmdBosjUWpD3wSGGSCAX24r1xzgnaKsDRdwWWPDRe0W545M6vePH/75AHhde3xfnQUAaApKhrowUXKKmvL6GPUNokUbJFf+wLgOsPW8eznJ3P2N4SMfbeYhZnbTflPveaa1dwuzkWeLu9vL0qYd9DmtNs7O9QrCcEPiOQ1KCcaUTcaQyBr7xr/Wn9fDp1pGe5INbikQvTmcmc4QSx+YXSqlOucVv3Ppqyuf5UZ3DOhCjlwIDAQAB",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Yago\",\n    \"email\": \"yagogmaia@gmail.com\"\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user"
-					]
-				},
-				"description": "Endpoint para criar Usuário."
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteUser",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/user/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"1"
-					]
-				},
-				"description": "Endpoint para deletar usuário."
-			},
-			"response": []
-		},
-		{
-			"name": "PutUser",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						},
+						"description": "Endpoint para deletar usuário."
 					},
-					{
-						"key": "publicKey",
-						"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgM93zqX0XjaE2V64ffQvuxX2WuiwoecLwW3PzD7Q0olKxIxuWxUJUfhpYw2giZMOKU42ZtyXfeq2LNyGzDxi7uKeF4Jo0Nhj2kj0SptDMINohp3hvZw3ujtmHL98zNh7nH1LN9Dwwlm204CC7UBSKMLu/Q6nDhF+NJxkYbp5CQUs7HgGgvFrbSUBjpMj4AqplLLc8+b73FCVHZToL21C7lgNR5WQw+EV5qxPYm7rg7/GZPEMwWT25kp+DY9UI5Lfbr94xoo/Zh3nNTIb4CboMvvyVJqhczK5LKrwOZ5wBVmziz8S/kPwfbohg1l1NA+4fzgb1GJPzutAZr83UMnK1QIDAQAB",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": 1,\n    \"name\": \"Yago\",\n    \"email\": \"yagogmaia@gmail.com\"\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user"
-					]
-				},
-				"description": "Endpoint para alterar usuário."
-			},
-			"response": []
-		},
-		{
-			"name": "ListByUser",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "userId",
-						"value": "1",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/digitoUnico/listar",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"digitoUnico",
-						"listar"
-					]
-				},
-				"description": "Endpoint para listar todos os dígitos únicos calculados por um usuário."
-			},
-			"response": []
-		},
-		{
-			"name": "ComputeUniqueDigit",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "userId",
-						"value": "34",
-						"type": "text",
-						"disabled": true
+				{
+					"name": "PostUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "publicKey",
+								"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8LAVw8pdvrLREu7U3xAx1Nzv5xM/5wIMJ1bW1B1Rc5CIVCAY0Nzx3J7lyl6V4lHG34DvJMpV6umAQNz5J/HO/qZVX0lzWBOR7y+2mVcEqmdBosjUWpD3wSGGSCAX24r1xzgnaKsDRdwWWPDRe0W545M6vePH/75AHhde3xfnQUAaApKhrowUXKKmvL6GPUNokUbJFf+wLgOsPW8eznJ3P2N4SMfbeYhZnbTflPveaa1dwuzkWeLu9vL0qYd9DmtNs7O9QrCcEPiOQ1KCcaUTcaQyBr7xr/Wn9fDp1pGe5INbikQvTmcmc4QSx+YXSqlOucVv3Ppqyuf5UZ3DOhCjlwIDAQAB",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Yago\",\n    \"email\": \"yagogmaia@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Endpoint para criar Usuário."
 					},
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"n\": \"12345\",\n\t\"k\": 5\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/digitoUnico/calcula",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"digitoUnico",
-						"calcula"
-					]
+				{
+					"name": "PutUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "publicKey",
+								"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgM93zqX0XjaE2V64ffQvuxX2WuiwoecLwW3PzD7Q0olKxIxuWxUJUfhpYw2giZMOKU42ZtyXfeq2LNyGzDxi7uKeF4Jo0Nhj2kj0SptDMINohp3hvZw3ujtmHL98zNh7nH1LN9Dwwlm204CC7UBSKMLu/Q6nDhF+NJxkYbp5CQUs7HgGgvFrbSUBjpMj4AqplLLc8+b73FCVHZToL21C7lgNR5WQw+EV5qxPYm7rg7/GZPEMwWT25kp+DY9UI5Lfbr94xoo/Zh3nNTIb4CboMvvyVJqhczK5LKrwOZ5wBVmziz8S/kPwfbohg1l1NA+4fzgb1GJPzutAZr83UMnK1QIDAQAB",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Yago\",\n    \"email\": \"yagogmaia@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Endpoint para alterar usuário."
+					},
+					"response": []
 				},
-				"description": "Endpoint para calcular o dígito único."
-			},
-			"response": []
+				{
+					"name": "ListByUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "userId",
+								"value": "12",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/digitoUnico/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitoUnico",
+								"listar"
+							]
+						},
+						"description": "Endpoint para listar todos os dígitos únicos calculados por um usuário."
+					},
+					"response": []
+				},
+				{
+					"name": "ComputeUniqueDigit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "userId",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"n\": \"021209182912901923849237489273498134093174872398472398472398472398472384723048230942839402734638741653742762574234983\",\n\t\"k\": 10000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/digitoUnico/calcula",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitoUnico",
+								"calcula"
+							]
+						},
+						"description": "Endpoint para calcular o dígito único."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								""
+							]
+						},
+						"description": "Endpoint para recuperar todos os usuários cadastrados no banco."
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "GetUsers",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/user/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						""
-					]
+			"name": "Amazon",
+			"item": [
+				{
+					"name": "GetUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://18.218.43.52:8080/user/1",
+							"protocol": "http",
+							"host": [
+								"18",
+								"218",
+								"43",
+								"52"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						},
+						"description": "Endpoint para buscar Usuário."
+					},
+					"response": []
 				},
-				"description": "Endpoint para recuperar todos os usuários cadastrados no banco."
-			},
-			"response": []
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://18.218.43.52:8080/user/1",
+							"protocol": "http",
+							"host": [
+								"18",
+								"218",
+								"43",
+								"52"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						},
+						"description": "Endpoint para deletar usuário."
+					},
+					"response": []
+				},
+				{
+					"name": "PostUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "publicKey",
+								"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8LAVw8pdvrLREu7U3xAx1Nzv5xM/5wIMJ1bW1B1Rc5CIVCAY0Nzx3J7lyl6V4lHG34DvJMpV6umAQNz5J/HO/qZVX0lzWBOR7y+2mVcEqmdBosjUWpD3wSGGSCAX24r1xzgnaKsDRdwWWPDRe0W545M6vePH/75AHhde3xfnQUAaApKhrowUXKKmvL6GPUNokUbJFf+wLgOsPW8eznJ3P2N4SMfbeYhZnbTflPveaa1dwuzkWeLu9vL0qYd9DmtNs7O9QrCcEPiOQ1KCcaUTcaQyBr7xr/Wn9fDp1pGe5INbikQvTmcmc4QSx+YXSqlOucVv3Ppqyuf5UZ3DOhCjlwIDAQAB",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Yago\",\n    \"email\": \"yagogmaia@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "http://18.218.43.52:8080/user",
+							"protocol": "http",
+							"host": [
+								"18",
+								"218",
+								"43",
+								"52"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Endpoint para criar Usuário."
+					},
+					"response": []
+				},
+				{
+					"name": "PutUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "publicKey",
+								"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgM93zqX0XjaE2V64ffQvuxX2WuiwoecLwW3PzD7Q0olKxIxuWxUJUfhpYw2giZMOKU42ZtyXfeq2LNyGzDxi7uKeF4Jo0Nhj2kj0SptDMINohp3hvZw3ujtmHL98zNh7nH1LN9Dwwlm204CC7UBSKMLu/Q6nDhF+NJxkYbp5CQUs7HgGgvFrbSUBjpMj4AqplLLc8+b73FCVHZToL21C7lgNR5WQw+EV5qxPYm7rg7/GZPEMwWT25kp+DY9UI5Lfbr94xoo/Zh3nNTIb4CboMvvyVJqhczK5LKrwOZ5wBVmziz8S/kPwfbohg1l1NA+4fzgb1GJPzutAZr83UMnK1QIDAQAB",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Yago Maia\",\n    \"email\": \"yagogmaia@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "http://18.218.43.52:8080/user",
+							"protocol": "http",
+							"host": [
+								"18",
+								"218",
+								"43",
+								"52"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Endpoint para alterar usuário."
+					},
+					"response": []
+				},
+				{
+					"name": "ListByUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "userId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://18.218.43.52:8080/digitoUnico/listar",
+							"protocol": "http",
+							"host": [
+								"18",
+								"218",
+								"43",
+								"52"
+							],
+							"port": "8080",
+							"path": [
+								"digitoUnico",
+								"listar"
+							]
+						},
+						"description": "Endpoint para listar todos os dígitos únicos calculados por um usuário."
+					},
+					"response": []
+				},
+				{
+					"name": "ComputeUniqueDigit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "userId",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"n\": \"58439217839584378219783291873291873954739658917839218739875875843921783958437821978329187329187395473965891783921873987587584392178395843782197832918732918739547396589176883921873987587584392178395843782197832918732918739547396589178392187398758758439217839584378219783291873291873954739658917839218739875875843921783958437821978329187329187395473965891783468192187398758758439217839584378219783291873291873954739658917839218739875875843921783958437821978329187329187395473962589178392187398758758439217839584378219783291873291873954739658917839218687398758758439217839584378219783291873291873954739658917839218739875875843921783958437821978329187329187395473965891783921873987587584392178395843782197832918732918739547396589178392187394685843921783958437821978329187329187395473965891783921873987587584392178395843782197832918732918739547396589178392187398758758439217839584378219783291873291873954739658917688392187398758758439217839584378219783291873291873954739658917839218739875875843921783958437821978329187329187395473965891783921873987587584392178395843782197832918732918739547396589178346819218739875875843921783958437821978329187329187395473965891783921873987587584392178395843782197832918732918739547396258917839218739875875843921783958437821978329187329187395473965891783921868739875875843921783958437821978329187329187395473965891783921873987587584392178395843782197832918732918739547396589178392187398758758439217839584378219783291873291873954739658917839218739468\",\n\t\"k\": 100000\n}"
+						},
+						"url": {
+							"raw": "http://18.218.43.52:8080/digitoUnico/calcula",
+							"protocol": "http",
+							"host": [
+								"18",
+								"218",
+								"43",
+								"52"
+							],
+							"port": "8080",
+							"path": [
+								"digitoUnico",
+								"calcula"
+							]
+						},
+						"description": "Endpoint para calcular o dígito único."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.59.18.151:8080/user/",
+							"protocol": "http",
+							"host": [
+								"13",
+								"59",
+								"18",
+								"151"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								""
+							]
+						},
+						"description": "Endpoint para recuperar todos os usuários cadastrados no banco."
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

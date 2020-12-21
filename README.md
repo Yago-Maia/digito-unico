@@ -20,6 +20,7 @@ mvn spring-boot:run
 
 ## Postman:
 Segue na raiz do diretório uma coleção chamada 'postman_collection.json' para utilização das API's.
+Foram criadas duas pastas no postman, uma para testes locais e outra apontando para a API hospedada na AWS.
 Segue nome dos Endpoint's e sua descrição:
 ```bash
 GetUser - Listar usuário por Id.
@@ -41,6 +42,7 @@ mvn test
 Para acessar o Swagger é necessário acessar o link abaixo com o projeto em execução:
 ```bash
 http://localhost:8080/swagger-ui/index.html
+http://18.218.43.52:8080/swagger-ui/index.html
 ```
 Os arquivos JSON e YAML do Swagger se encontram no diretório raiz do projeto com os nomes:
 ```bash
