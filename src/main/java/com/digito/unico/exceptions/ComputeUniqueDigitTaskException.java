@@ -1,10 +1,10 @@
 package com.digito.unico.exceptions;
 
-public class ComputeUniqueDigiteTaskException extends RuntimeException {
+public class ComputeUniqueDigitTaskException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public ComputeUniqueDigiteTaskException() {
+    public ComputeUniqueDigitTaskException() {
         super("An error occurred while starting tasks to compute unique digit.");
     }
 }
