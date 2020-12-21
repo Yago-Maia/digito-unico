@@ -1,6 +1,6 @@
 package com.digito.unico.service;
 
-import com.digito.unico.exceptions.ComputeUniqueDigiteTaskException;
+import com.digito.unico.exceptions.ComputeUniqueDigitTaskException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class OperationUniqueDigitService {
                 result+= task.get();
             }
         } catch (Exception e) {
-            throw new ComputeUniqueDigiteTaskException();
+            throw new ComputeUniqueDigitTaskException();
         }
 
         String strResult = String.valueOf(result);

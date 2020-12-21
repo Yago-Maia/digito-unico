@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,12 +36,12 @@ public class UniqueDigitController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @PostMapping("/calcula")
-    public int computeUniqueDigit(HttpServletRequest request, @RequestBody UniqueDigitDTO uniqueDigitDto) throws SQLException {
+    public ResponseEntity<Integer> computeUniqueDigit(HttpServletRequest request, @RequestBody UniqueDigitDTO uniqueDigitDto) throws SQLException {
         try {
             Long userId = request.getHeader("userId") == null ||
                     request.getHeader("userId").isEmpty() ? null : Long.valueOf(request.getHeader("userId"));
 
-            return uniqueDigitService.computeAndSaveUniqueDigit(modelMapper.map(uniqueDigitDto, UniqueDigit.class), userId);
+            return ResponseEntity.ok().body(uniqueDigitService.computeAndSaveUniqueDigit(modelMapper.map(uniqueDigitDto, UniqueDigit.class), userId));
         } catch (Exception ex) {
             throw ex;
         }
@@ -54,9 +55,9 @@ public class UniqueDigitController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @GetMapping("/listar")
-    public List<UniqueDigitDTO> listUniqueDigit(@RequestHeader("userId") Long userId) {
+    public ResponseEntity<List<UniqueDigitDTO>> listUniqueDigit(@RequestHeader("userId") Long userId) {
         try {
-            return uniqueDigitService.getAllByUser(userId).stream().map(uniqueDigit -> modelMapper.map(uniqueDigit, UniqueDigitDTO.class)).collect(Collectors.toList());
+            return ResponseEntity.ok().body(uniqueDigitService.getAllByUser(userId).stream().map(uniqueDigit -> modelMapper.map(uniqueDigit, UniqueDigitDTO.class)).collect(Collectors.toList()));
         } catch (Exception ex) {
             throw ex;
         }

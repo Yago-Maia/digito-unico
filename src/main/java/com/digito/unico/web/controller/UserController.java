@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,9 +34,9 @@ public class UserController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @GetMapping(value = { "/{id}" })
-    public UserDTO getUser(@PathVariable("id") Long id) {
+    public ResponseEntity<UserDTO> getUser(@PathVariable("id") Long id) {
         try {
-            return modelMapper.map(userService.findById(id), UserDTO.class);
+            return ResponseEntity.ok().body(modelMapper.map(userService.findById(id), UserDTO.class));
         } catch (Exception ex) {
             throw ex;
         }
@@ -49,9 +50,9 @@ public class UserController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @DeleteMapping(value = { "/{id}" })
-    public Boolean deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<Boolean> deleteUser(@PathVariable("id") Long id) {
         try {
-            return userService.deleteUser(id);
+            return ResponseEntity.ok().body(userService.deleteUser(id));
         } catch (Exception ex) {
             throw ex;
         }
@@ -66,10 +67,10 @@ public class UserController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @PostMapping
-    public UserDTO saveUSer(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
+    public ResponseEntity<UserDTO> saveUSer(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
         try {
             User user = modelMapper.map(userDto, User.class);
-            return modelMapper.map(userService.save(user, publicKey), UserDTO.class);
+            return ResponseEntity.ok().body(modelMapper.map(userService.save(user, publicKey), UserDTO.class));
         } catch (Exception ex) {
             throw ex;
         }
@@ -83,10 +84,10 @@ public class UserController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @PutMapping
-    public UserDTO editUser(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
+    public ResponseEntity<UserDTO> editUser(@RequestBody UserDTO userDto, @RequestHeader("publicKey") String publicKey) {
         try {
             User user = modelMapper.map(userDto, User.class);
-            return modelMapper.map(userService.update(user, publicKey), UserDTO.class);
+            return ResponseEntity.ok().body(modelMapper.map(userService.update(user, publicKey), UserDTO.class));
         } catch (Exception ex) {
             throw ex;
         }
@@ -99,9 +100,10 @@ public class UserController {
             @ApiResponse(code = 403, message = "Recurso proibido"),
             @ApiResponse(code = 404, message = "Recurso não encontrado") })
     @GetMapping
-    public List<UserDTO> findAllRatings() {
+    public ResponseEntity<List<UserDTO>> findAllRatings() {
         try {
-            return userService.findAll().stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList());
+            return ResponseEntity.ok().body(
+                    userService.findAll().stream().map(user -> modelMapper.map(user, UserDTO.class)).collect(Collectors.toList()));
         } catch (Exception ex) {
             throw ex;
         }
